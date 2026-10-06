@@ -7,7 +7,7 @@ Network devices
 - 2 types:
   i. clients : initiate requests
   ii. servers : responds to requests : they r simply computers with software installed which responds to specific requests
-  - this is relative to specific communication
+  - Client-server is relative to specific communication
 
 2. IP address:
 
@@ -17,7 +17,7 @@ Network devices
       - while doing so, the computer would send a packet consisting of 2 IP addresses, 1 of source and one of the destination, in the similar manner, when the server send the reply through a packet, it would again contain 2 IP addresses, one of source and other of destination.
      - IP addresses are 32 bits
      - represented as 4 octets ( smallest number obtained from the octet is
-       '0' -0000 0000 and the largest is '255'-1111 11111)
+       '0' -0000 0000 and the largest is '255'-1111 1111)
      -represented as 0000 0000.0000 0000.0000 0000.0000 0000
                       [0-255]   [0-255]   [0-255]   [0-255]
  - Its hierarchically assigned      
@@ -27,7 +27,7 @@ Network devices
 
    - transports traffic between hosts
    - Anytime 2 hosts are connected, u have a network
-   - before networks: transferring data btw hosys required postable media (disks, thumb drives etc)
+   - before networks: transferring data btw hosts required portable media (disks, thumb drives etc)
    - logical grouping of hosts which required similar connectivity
      Eg: ur home laptop, TV etc are connected to ur home Wi-fi
    - Networks can contain other networks (Sub-Networks or Subnet)
@@ -50,6 +50,8 @@ Network devices
    - Eg; If any 2  hosts want to communicate, the host would send a packet and the hub would duplicate it and communicate it to all the other hosts over the network
    - facilitates scaling communication between additional hosts
    - everyone receives everyone else's data
+   - <img width="311" height="93" alt="Screenshot 2026-10-06 210849" src="https://github.com/user-attachments/assets/da5dc11a-0414-477c-a272-5f60ff31c888" />
+
   
 6. Bridges
 
@@ -61,6 +63,8 @@ Network devices
    -if 2 hosts within the same port want to communicate, then the bridge will not let the signal leak into the other port.
    -likewise, if a host from 1 post wants to communicate with the host of another port, the bridge recognizes it and allows communication.
 
+<img width="316" height="129" alt="Screenshot 2026-10-06 210839" src="https://github.com/user-attachments/assets/07070a77-5adb-4342-ae9c-fbe046883f9c" />
+
 7. Switches:
 
    - Facilitate communication within a NETWORK
@@ -71,7 +75,11 @@ Network devices
    -hosts on a network share the same IP address space
   - Switching is the process of moving data within networks
 
+<img width="353" height="159" alt="Screenshot 2026-10-06 210825" src="https://github.com/user-attachments/assets/e15e15d9-6562-42e6-a114-3e6c2427c1e5" />
+
 8. Router
+
+<img width="334" height="183" alt="Screenshot 2026-10-06 211200" src="https://github.com/user-attachments/assets/447755e5-9ebb-43e6-adbc-bfb5078912fb" />
 
    -Handles communication between networks
    - provide traffic control point(security, filtering, redirecting)
@@ -81,6 +89,14 @@ Network devices
    - This acts as a GATEWAY ( a hosts way out of its local network)
    - Routing is a process of moving data between networks
    - Router is a device whose primary purpose is routing
-  
+  <img width="341" height="171" alt="Screenshot 2026-10-06 211711" src="https://github.com/user-attachments/assets/2527937f-e65b-4ccc-a646-653d6d59f9aa" />
+
    -they create Hierarchy in networks and entire Internet
-   
+   <img width="345" height="199" alt="Screenshot 2026-10-06 211843" src="https://github.com/user-attachments/assets/03eb8037-a83c-4f3b-ba8c-8f0d61a9da1e" />
+
+
+NOTE:
+
+-Layers: hubs and repeaters work at Layer 1 (bits and signals), bridges and switches at Layer 2 using MAC addresses, and routers at Layer 3 using IP addresses. Switches and bridges learn MAC addresses, which are stored in a MAC address table.
+-Domains: a hub puts everything in one collision domain. A switch gives each port its own collision domain. A router separates broadcast domains.
+-Security link: hubs let anyone on the network sniff everyone's traffic, which is part of why switches replaced them.
