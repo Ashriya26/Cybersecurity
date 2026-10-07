@@ -100,3 +100,60 @@ NOTE:
 -Layers: hubs and repeaters work at Layer 1 (bits and signals), bridges and switches at Layer 2 using MAC addresses, and routers at Layer 3 using IP addresses. Switches and bridges learn MAC addresses, which are stored in a MAC address table.
 -Domains: a hub puts everything in one collision domain. A switch gives each port its own collision domain. A router separates broadcast domains.
 -Security link: hubs let anyone on the network sniff everyone's traffic, which is part of why switches replaced them.
+
+
+
+
+Everything a host does to speak on the internet:
+
+2 scenerios:
+
+Case 1: Hosts connected directly to each other
+- on the same network
+- Its irrespective of if there are hubs or switches between the hosts
+- both have NIC Therefor have MAC address
+- Both have IP address and a subnet mask (SUBNET MASK-> identifies the size of the IP network)
+- Host A has some data and also knows the IP address of host b(mayne by typing : ping 10.1.1.33)
+- Host b knows the IP address of host A(maybe it acquired it from DNS( DNS converts a domain name to IP address)(eg: www.abcd.com----> 192.249.124.38)
+- Host A also knows its very own IP network
+- Host A creates a L3 header 
+- host A doesn't know the Mac Address of host b, so it uses ARP
+- The host A will shoot a message saying..if anyone has IP address of 10.1.1.33, send me ur mac address, my IP/MAC is 10.1.1.22/a2a2 --> this would have a L2 header but it wouldn't have the destination mac address----> sent as a BROADCAST
+- Broadcast: sent to everyone on the network
+- ARP mappings that r got are stored in ARP cache
+- the host 2 maps the IP address and the MAC address got from host A and send a packet containing host B's IP and MAC address to host A(UNICAST-> response sent directly to host A)
+- Then host A populates its ARP cache with the Host B IP and MAC address
+- Now as host A has all the details required, the data passed on to L2 would be sent to HOST B
+- Host B now has all the necessary information, so it send the data faster to the Host A
+  <img width="448" height="111" alt="image" src="https://github.com/user-attachments/assets/28d8b6fb-2d72-461d-ac6e-4c0d9af9c1e6" />
+
+  <img width="451" height="100" alt="image" src="https://github.com/user-attachments/assets/41ebf017-f8a8-46fb-a8d2-eed088e507c5" />
+
+
+
+Case 2: Hosts connected through a router
+- in a foreign network
+- Both have MAC and IP address(/24 is a subnet mask-255.255.255.0)
+- Anything with an IP address would have an ARP cache
+- Host A knows IP address of host B(provided by the user or the application)
+- Host A also knows that the Host b is on the foreign network as it just compared its own IP address with the Host B's IP address
+- Host A will create a L3 header
+- Host A will broadcast the ARP message and the router will receive it
+- But, how will Host A know the IP address of the router? it will use the ARP to resolve the MAC address of router's IP---> routers IP is configured as a default Gateway
+- By this Host A will shoot an ARP request to Router, and the the router will send back a response consisting the MAC address
+- Now the Host A has the complete data
+- This is then sent to the router
+- The router will add the L3 and L2 levels as required and then it would send it the same way to the Host B
+- ARP mapping can be used for ANY host in foreign network
+
+<img width="446" height="148" alt="image" src="https://github.com/user-attachments/assets/9e77222f-cdb2-4178-b7dc-eff1188d545b" />
+
+
+
+Summary:
+
+The first step of sending the data is always the same
+-Determine if the Target IP is in local/foreign network
+- If local: ARP for target IP
+- If foreign : ARP for default Gateway IP
+
