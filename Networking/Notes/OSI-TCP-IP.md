@@ -86,10 +86,19 @@ Entire flow:
 
 
 TCP-IP Model
+<img width="408" height="203" alt="image" src="https://github.com/user-attachments/assets/019384fd-b86a-4e3b-8aae-1400fa55d8dd" />
 
-
+-its a model to standardize computer networking
+-This is the one used in the real world
+- AT application layer: we have http, ftp, smtp
+- The working is similar to OSI model
   
-   
+   <img width="450" height="160" alt="image" src="https://github.com/user-attachments/assets/3fd7fadf-c928-448a-b7d7-637abbd5b64d" />
+
+NOTE:
+Encryption is not a single layer process. As u travel down the layers from application to data link, additional constraints add up to the data ending up encapsulating it
+
+
 
 
 
