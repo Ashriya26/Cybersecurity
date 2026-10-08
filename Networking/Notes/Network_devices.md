@@ -163,11 +163,156 @@ Everything Switches do to facilitate communication
 These communicating devices belong to the same IP
 - Switches look only into the Layer 2 headers, and it donst look ino layer 3 header
 - So u dont need anything related to IP
--Switches maintain a map address table which maps a post to its particular MAC address
+-Switches maintain a MAC address table which maps a port to its particular MAC address
 - Switch perform only 3 actions:
-        - Learn
-        -Flood
-        -Forward
+        - Learn : Update MAC address table with mapping of Switch Port to Source MAC
+Meaning: the host A will send out the data consisting of source and destination, the switch will update the MAC Address table with the Port of this host and its corresponding MAC address
+        -Flood :Duplicate and send Frame out to all switch ports(except the recieving port)
+Meaning: Now the switch has the data. But it dosnt know which dest. host has that particular MAC address. so it will broadcast it out to all the hosts. The hosts look at the dest. mac address, and if it not their mac address, they just discard it, and it would be kept only by that Host of the intended MAC address.
+        -Forward: Use MAC Addess Table to deliver frame to appropriate switch port.
+Meaning: The Host B, which was intended to receive the message, then forwards the reply to the source. As the MAC Address table now has the MAC address of the  source port, it will just send the reply to the source
+
+<img width="320" height="117" alt="image" src="https://github.com/user-attachments/assets/d0776b5a-a936-4c75-bd78-d95c8dc9e48e" />
+
+<img width="360" height="87" alt="image" src="https://github.com/user-attachments/assets/3819912c-5d8b-4902-83a7-d46163a5aed2" />
+So anymore if host A and B have to send any kind of data to each other, they can send it directly, without doing the flooding action
+- the process would be identical if Host D was a router connected to the internet
+- If u want to send/recieve data to the switch, then the switch must have a MAC and an IP address and the switch would act as a host
+- If ur sending it through a switch, then the MAC and IP address for the switch is not required
+
+-> Unicast frame : Destination MAC is another host( 1 to 1 communication)-floods only when the dest. MAC address is not known
+-> Broadcast Frame: Destination MAC address of FFFF.FFFF.FFFF( specially reserved mac address which shows that this data must be delivered to all hosts on the local network)-They r always flooded
+
+NOTE:
+-swicth dosnt broadcast anything
+- Broadcast is a type of frame
+- flood is a switch action
+- switch will only send broadcasts if traffic is going to and from the switch. If its through the switch, then it dosnt Broadcast, it floods
+
+-> VLANs(virtual Local Area Network)
+- divides switch ports into isolated groups
+- divides switches into multiple "Mini-switches"
+- switches do all 3 individual actions within each VLAN
+  <img width="227" height="88" alt="image" src="https://github.com/user-attachments/assets/be254492-0f78-4293-94b8-ee9249d0a33c" />
+
+-> Multiple switches:
+
+<img width="361" height="83" alt="image" src="https://github.com/user-attachments/assets/c2ae478a-2f51-44c8-8ab8-93ce4c1949e4" />
+
+- There can be multiple switches for this action.
+- here, both these switches have their own MAC address and also perform tasks independently
+- Now Host A will send a Frame to the switch
+- The switch will learn the Host MAC and save it in the table but it dosnt know the dest. MAC , so it will flood it, which as a result will go to the 2nd switch.
+- This switch, will now have the source and again, this switch too dosnt know the dest. so it will flood the frame to all hosts, thereby reaching the intended host.
+(in this process, when switch A floods, it will send it to host C too, but it will ignore it as host C MAC addres != desc MAC address, and the same happens when the switch 2 sends the data to host D and host B, Host D ignores it)
+-Now the response is sent from the host B to Host A by the forwarding action and no need of flooding as it already has the data in its MAC Address table.
+
+<img width="375" height="90" alt="image" src="https://github.com/user-attachments/assets/da33e806-0886-441b-9434-5ef7852d4370" />
+
+
+
+Everything Routers do to facilitate communication
+
+-Routers have an IP address and a MAC address
+--> difference between hosts and routers
+    It comes from the IPv6 RFC(request for comments)-docs that defines internet standards
+    RFC 2460: Internet Protocol Version 6(IPv6) specification:
+    -Node : a device that implements IPv6
+    -router : a node that forwards IPv6 packets not explicitely addressed to itself
+    -Host: any node that is not a router
+    Router must have an IP and MAC address on each network(it cantmaintain a single IP/MAC for all networks)
+- routers maintain a map of all the networks they know abt : Routing table
+
+<img width="431" height="96" alt="image" src="https://github.com/user-attachments/assets/adf9b271-0bee-472a-846e-29899320a3eb" />
+
+Routers can be populated by 3 methods:
+i. Directly connected: routes for the networks which r attached
+  - Here, the router is directly connected to the networks
+  - The routers will maintain a routing table for the either side of the network
+  - for the left, router will add the IP of the left side of the router and vice versa
+  - In this img, there r 2 routers and each of them have their own routing tables
+  - When Host A send a packet, the router will first check for the destination IP, and if that IP is present in its table, it will just forward it to the designated host
+  - But if Host A sends a packet, and the destination is not repesent in the routing table of the particular router, it just DISCARDS it
+
+<img width="431" height="146" alt="image" src="https://github.com/user-attachments/assets/64f69013-e28a-4fe2-a25e-c93199f44140" />
+
+ii. Static routes: routes manually provided by an administrator
+  - This helps resolve the issue of, if the mapping is not present in the routing table, it will be discarded.
+  - for this, u can log into router 1, and adding the details of the router and the IP to which the packet must be pushed to(addede manually)
+  - Bcz of this, even if the value is not present in the routing table, it would be added by the admin manually, so the packet would move to its intended dest without any issues
+  - even during the reply from the Host 2, u can insert the routing values in the R!s routing tbl regarding the Router IP and also the destination IP from that router. This will allow the packet to be delivered without any issues
+    
+  <img width="427" height="141" alt="image" src="https://github.com/user-attachments/assets/bfab7f9d-a4a7-4b78-be6d-e2ffa837f7f2" />
+
+iii. Dynamic routes: routers learned automatically from other routers
+    - The routers communicate with each other inorder to reach their designated destination
+    - The R1 would tell R2 that it knows abt 10.0.55 and 10.0.44, and the R2 would tell R1 that it knows abt 10.0.66 and 10.0.55 but not abt 10.0.44
+    - so it will add it to the R2s table. So anything thats to be sent to R1s related host, R2 will directly send to R1 and then R1 will send it to designated host and same vice versa
+    - The only difference between static and dynamic is the way in which its learnt
+    - The exact methods that the routers use to communicate with each other is governed by different Routing Protocols -> RIP, OSFP, BGP, EIGRP, IS-IS
+
+<img width="422" height="141" alt="image" src="https://github.com/user-attachments/assets/343df70b-8a60-4957-b3b7-0edade9ffd2e" />
+
+- routers also have ARP tables ( mapping of L3(IP) and L2(MAC) address)
+- ARP tables are initially empty and would be populated as needed with the network traffic
+- But Router table must be populated ahead of time
+  
+<img width="455" height="114" alt="image" src="https://github.com/user-attachments/assets/98de1ccf-8a60-4add-a328-a91c538e4f79" />
+
+Working:
+
+Part 1: Host A to Host C:
+
+- host A has the data to be sent to host C
+- L3 header is added to this data, and it would have its own IP address and also the IP Address of the dest. Host
+- Now, comparing its own IP address and the IP address of teh dest. it knows that the network is present in a different network so it would need to send the packet to the default Gateway(which is R1)
+- Now, Host A dosnt have the MAC address to pass the packet-> cannot construct L2 header-> no ARP entry for Gateway's IP Address(R1)
+- The Host A will now send an ARP request requesting for the MAC address, by proving its very own IP and MAC addresses-10.0.44.1.
+- This then reaches the R1, bcz of which the R1 now has the values required of the source IP and MAC, so it will add it in its ARP table-populates with entry for 10.0.44.9.
+- The router will respond to this message with its own IP and MAC addresses.
+- so Host A will populate the ARP table with entry for 10.0.44.1
+- Host A will send this entire packet and all data to the router
+- R1 receives this packet and discards the L2 header
+- R1 looks up the destination IP in routing table-> packet's next hop is to 10.0.55.2
+- Since there is no MAC address available, it will send the ARP requiest and awaits for the response
+- R2 populates its arp table with entry for 10.0.55.1 and sends a response
+- R1 will populate its ARP table with entry for 10.0.55.2
+- Now the packets r sent from R1 to R2 and L2 header is discarded
+- The R1 finds the appropriate IP address in the routing table(r2), but no MAC address. SO it will send out an ARP request.
+- Then the Host will respond with its MAC address( 10.0.66.7-> c7c7)
+- The router now has the MAC and IP address so it will send the required data to the host
+- The host C will discard the L2 header, L3 header and then it processes the data
+<img width="450" height="117" alt="image" src="https://github.com/user-attachments/assets/04cf4278-3149-4678-8c6c-2bc6e997439d" />
+
+  PART 2 : response from Host C to Host A
+
+-faster bcz the values r already populated in the ARP table
+- Host C has the data and creates the L3 header and as it already has the data required in the ARP table, it will directly add the L2 header inorder to send the data and send it to the default gateway(R2)
+- The data is delivered from Host C to Router 2, in the table, it has the info of the next IP address and the MAC address of that corresponding IP address-> so it will just send it directly after creating L2 header
+- The same path is followed from R1 to its destination Host A-> it will discard L3 and L2 and process the data
+
+
+- Events btw R2 and R1 would repeat for any amt of routers in the path
+- Every time these steps r followed:
+  1. Look up the dest IP in routing tbl to determine the next hop IP
+  2. Adds a L2 header with dest MAC next Router's MAC
+  3. Performs ARP as necessary
+
+
+-Routers typically connected in hierarchy
+- easier to scale- more consistent connectivity
+- Here, its helpful bcz if any router goes down, it will not affect the other routers
+  <img width="451" height="108" alt="image" src="https://github.com/user-attachments/assets/544575f4-2183-4f9a-8e3e-3c08e4302834" />
+- Hierarcy allows for route summarization
+- u might have observed "/24" -> used to match the first 3 octets( bits in the octets) in subnetting-> which means when the router is mapping the IP, it will look into the first 3 octets and map it to the corresponding IP(either host/router) and no need to checking all the 4 octets
+- If u want to match only the first 16 bits (2 octets) then u can give /16 instead of /24
+- U can reduce the number of routes in routing table
+- U can further simplify it further to /8, like if u want to send the data from R8 to R5( same network) or some router in New york
+- In case ur routing table has /24, /16 and /8, it will check for the value thats more specific(i.e /24 bcz it has more octets)
+- Default route: ultimate route summary( eg, R8 has to go to R5 irrespective of if its passing the data within Tokyo network or its been passed to new york network. In such cases u can give the default route like 0.0.0.0 /0(every IPv4 address)-->this means every single IP address is matched by this particular route
+This basically means that, For everything else, go to route 5
+
+
 
 
 
