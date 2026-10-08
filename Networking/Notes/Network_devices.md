@@ -148,12 +148,26 @@ Case 2: Hosts connected through a router
 
 <img width="446" height="148" alt="image" src="https://github.com/user-attachments/assets/9e77222f-cdb2-4178-b7dc-eff1188d545b" />
 
-
-
 Summary:
 
 The first step of sending the data is always the same
 -Determine if the Target IP is in local/foreign network
 - If local: ARP for target IP
 - If foreign : ARP for default Gateway IP
+
+
+Everything Switches do to facilitate communication
+
+-switching: process of moving data within networks
+-Switches are devices whose primary purpose is switching
+These communicating devices belong to the same IP
+- Switches look only into the Layer 2 headers, and it donst look ino layer 3 header
+- So u dont need anything related to IP
+-Switches maintain a map address table which maps a post to its particular MAC address
+- Switch perform only 3 actions:
+        - Learn
+        -Flood
+        -Forward
+
+
 
