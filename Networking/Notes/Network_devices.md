@@ -314,5 +314,131 @@ This basically means that, For everything else, go to route 5
 
 
 
+Encapsulation: ( using TCP/IP model)
+- process of formatting data
+- adds a overhead at each layer, and this over head is called a header
+- segment header, Packet header, frame header-> PDU ( protocol data unit)
+<img width="272" height="176" alt="image" src="https://github.com/user-attachments/assets/6a105a19-e436-4e0f-98c7-1ec46b7baade" />
+- the Data link and the Physical later is collectively called the Network access layer
+- The data from the client/host goes through the application layer
+- It then goes to the Transport layer where the segment header(PDU for transport layer ) is added to the data
+- Then it goes to the Network layer where the packet header(PDU for Network later) is added to the segment
+- Then is goes down to the Data link layer, where the frame header is added to the packet
+- This then passes to the physical layer where its just bits and then is transported to the recipient.
+- All these layers are independent of each other and all of them perform their specific functions
+- The data is never altered during the course of this event.
+
+Decapsulation:
+
+<img width="331" height="193" alt="image" src="https://github.com/user-attachments/assets/01e55d8a-69c0-458f-8649-e4c424a57d1a" />
+
+- its the opposite of encapsulation
+- here the encapsulated data reaches the destination machine at the physical layer and it consists of only bits
+- This is then passed to the data link layer where it reads the Frame header and the frame trailer, and once it gets the required info from it, it will discard the frame header.
+- Packet then moves to the Network layer where it reads the info in the Physical header and discards it, remaining only with data and segment layer
+- This segment is further passed to the Transport layer where it would read out the segment data and then discard it.
+- The data that remains is then sent to the application layer which then finally reaches the destination Host.
+
+
+
+LAN Vs WAN:
+
+4 important types of network:
+
+i. LAN- local area network
+  - small network coverage
+  - easy to manage
+  - low cost
+  - high speed internet
+  - Used in homes, schools, offices, labs
+  - fast bcz these devices r close to each other
+  - LAN is one of the most commonly used networks
+    
+ii. MAN- Metropolitan Area Network
+  - more area coverage than LAN
+  - More expensive than LAN
+  - medium speed
+  - connects multiple LANs
+  - Used for city wise internet access
+  - Multiple office branches connected by a common network
+  - Its larger than LAN but smaller than WAN
+    
+iii. WAN- Wide Area Network
+  - Connects larger areas
+  - used to connect the entire country / even the entire world
+  - Bcz it has to cover such a large distance, it basically slower
+  - WAN connects many smaller networks together
+  - Best example is Internet
+  - Uses public communication systems ( Eg: Internet)
+    
+iv. WLAN- Wireless Local Area Network
+  - similar to LAN but dosnt use cables, it transmits wirelessly
+  -  uses wifi instead of cables
+  -  WLAN gives more flexibility bcz devices can move more freely
+  -  Wireless connection
+  -  Wifi technology
+  -  no need for cables
+  -  easy to connect devices
+
+NOTE:
+WAN connects networks, while a LAN connects devices within a local area
+
+
+# LAN vs WAN vs MAN vs WLAN
+
+| Type     | Full Form                   | Coverage                  | Typical Use                                                | Example               |
+| -------- | --------------------------- | ------------------------- | ---------------------------------------------------------- | --------------------- |
+| **LAN**  | Local Area Network          | Small geographical area   | Connect devices within a home, office, building, or campus | Office network        |
+| **WAN**  | Wide Area Network           | Large geographical area   | Connect networks across cities, countries, or continents   | Internet              |
+| **MAN**  | Metropolitan Area Network   | City or metropolitan area | Connect multiple LANs within a city                        | City-wide network     |
+| **WLAN** | Wireless Local Area Network | Small geographical area   | Connect devices wirelessly within a LAN                    | Wi-Fi network at home |
+
+## Key Differences
+
+### LAN
+
+* Covers a **small geographical area**.
+* Usually owned and managed by a single organization or individual.
+* Uses technologies such as **Ethernet** and sometimes Wi-Fi.
+* Example: Computers, printers, and servers connected within an office.
+
+### WAN
+
+* Covers a **large geographical area**.
+* Connects multiple LANs or other networks.
+* Often uses leased lines, fiber, cellular networks, VPNs, or other carrier infrastructure.
+* Example: A company connecting offices in Bengaluru, London, and New York.
+* The **Internet is the largest example of a WAN**.
+
+### MAN
+
+* Covers an area larger than a LAN but smaller than a WAN, typically a **city or metropolitan region**.
+* Can connect multiple LANs across the city.
+* Example: A university or organization connecting multiple campuses across a city.
+
+### WLAN
+
+* A **wireless form of LAN**.
+* Uses wireless communication, primarily **Wi-Fi (IEEE 802.11)**, instead of physical Ethernet cables for local connectivity.
+* Example: Devices connected to your home Wi-Fi network.
+
+## Easy Way to Remember
+
+```text
+LAN  → Building / Small area
+MAN  → City
+WAN  → Country / Continent / World
+WLAN → Wireless LAN
+```
+
+> **Important:** WLAN is different from LAN mainly in how devices connect. A WLAN is still a LAN, but it uses wireless communication.
+
+
+
+
+
+
+
+
 
 
