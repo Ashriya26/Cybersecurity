@@ -169,3 +169,4 @@ Step 4:Data transmission
 -Y dont we just use assymetric encryption for everything? y use only symmetric?
 - This is bcz assymetric is computationally expensive and not really suitable for data transmillion
 - TLS 1.3 is an optimization
+- Diffie–Hellman is used in TLS 1.3 and RSA is discarded there
