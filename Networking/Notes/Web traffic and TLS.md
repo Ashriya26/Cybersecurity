@@ -138,7 +138,10 @@ HTTPS, SSL, TLS:
 - Https encrypts this data making it unreadable other than the send er and the reciever.
 - Https info is secured by TLS ( Transport layer Security) so even if a hacker gets access, he could only see jumbled data
 
-TLS Handshake:
+
+<img width="299" height="220" alt="image" src="https://github.com/user-attachments/assets/1dd12b8e-523c-4f2f-aa54-89157575d6cf" />
+
+TLS Handshake:( TLS 1.2)
 Step 1 : TCP handshake
 Step 2: Certificate check
 - this is where TLS handshake begins
@@ -160,4 +163,9 @@ Step 3:Key exchange
 
 Step 4:Data transmission
 - by the end of step 3, both the sides hold the session key
-- 
+- Here they use the session key and cyber suite to send the encrypted data back and forth in a secure birectional channel
+
+
+-Y dont we just use assymetric encryption for everything? y use only symmetric?
+- This is bcz assymetric is computationally expensive and not really suitable for data transmillion
+- TLS 1.3 is an optimization
