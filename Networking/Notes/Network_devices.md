@@ -435,10 +435,216 @@ WLAN → Wireless LAN
 
 
 
+VLANs:( Virtual LAN)
+- instead of physical partitioning ,we do the logical partitioning of the switch and then assign each part to 1 LAN
+- once a switch is divided then you can connect hosts, based on the number of ports that are ressent in VLAN
+- the devices of 1 VLAN cannot communicate with hosts of other VLAN, but can communicate within the VLAN.
+- If u want inter VLAN communication, then u need a router, and this router is connected to the trunk port and this is called the trunk line
+<img width="401" height="218" alt="image" src="https://github.com/user-attachments/assets/dc3c8086-1541-4b14-8e89-7edef597e69f" />
+
+- This is the logical partitioning of layer 2 network
+- multiple partitions can be created allowing multiple hosts to be connected, if not partitioned, then they become a part of the default VLAN
+- Each VLAN is a broadcast domain , usually with its own IP address
+- VLANs are Mutually Isolated and Packets can pass between them via the router
+- the partitioning of L2 happens inside a L2 device like a switch, and the hosts are unaware of the VLANs existance
+
+Benifits:
+- security: broadcast of 1 VLAN wont be sent to others
+- Cost reduction( only 1 switch is used)
+- Better performance ( max utilization of the switch)
+- Shrink broadcast domains
+- Improves IT staff efficiency
+- simpler project and application management
+
+Types:
+- data VLAN
+- Default VLAN
+- Native VLAN
+- Management VLAN
+- Voice VLAN
+
+VLAN frame Tagging:
+<img width="326" height="208" alt="image" src="https://github.com/user-attachments/assets/299c8f56-9bc5-4c84-bc35-0394682e1d07" />
+
+- its the process of adding the VLAN identification header to the fremae
+- It is used to properly transmit multiple VLAN frames through a trunk link
+- Switches tag frames to identify the VLAN to that they belong to. Diff tagging protocols exists: IEEE 802.1Q is a very popular one
+- it defines the structure of the tagging header added to the frame
+- switches add VLAN tags to the frames before placing them into the trunk links and remove the tags before forwarding them through the non trunk ports
+- When properly tagged, the frames can traverse any number of swicthes via trunk links and still be forwarded withinthe correct VLAN at the destination
 
 
+Firewall:
+- Its a system that is used to prevent unauthorized access from entering a private network
+- creates a safety barrier between a private network and public internet
+- Its specially important to large organizations
+- It has a set of rules and present in an access control list
+- They are controlled by the admin
+<img width="385" height="70" alt="image" src="https://github.com/user-attachments/assets/5891132b-c675-4d1d-a3aa-58df7e4a655a" />
+- Firewall rules are based on:
+    - IP addreses
+    - Domain names
+    - Protocols
+    - Programs
+    - prots
+    - key words
+- Eg: using port numbers, data form some ports are allowed while of other ports are denied
+
+Types:
+- Host-Based Firewall : its a software installed on a computer and it protects that computer only
+    - Eg: Microsoft windows Firewall, Zone alarm( 3rd party)
+    - lot of antivirus programs come with a host based firewall
+- Network based Firewall:
+    - Combination of hardware and software
+    - placed between the public inter net and private network
+    - This protects the entire network based on the management rules applied
+    - stand-alone: Used by large organizations
+    - Routers have built-in firewall
+    - Could firewall
+- most organizations have both network and host based firewall because if any traffic is missed from the network firewall, it can be stopped in the host based firewall
 
 
+Proxies:
+- proxy server is a server that retrieves data out on the internet on behalf of the user
+- Eg: when a computer wants to view a webpage, u will insert the name of the webpage and retrieve the webpage from its web server
+- Proxy server acts a middleman between u and the webserver, so when u send a request for a webpage, it will retrieve it from the webserver on ur behalf and then give it to u
+- Benifits:
+    - Privacy: allows u to access the internet anonymously and ur IP address becomes invisible, only the IP of the proxy server would be seen viewing the webpage
+    - Speed: when the proxy server requests for a webpage from the webserver, it will store a copy of it in its Central DB, so that next time someone else queries for the same website, it can give it from the cache directly, instead of querying the web server
+    - saves bandwidth: as it saves the copy of whatever it has retrieved, it will reduce the time of going to the internet always and fetching the data
+    - activity logging: in many companies, it can keep track of the websites that the employees are logging into and also block the use of certain websites
+- Proxy servers cannot encrypt the data- so the data can be intercepted by hackers, ISP or the government, so this is where a VPN comes in
+- A VPN( Virtual private network)- not only hides the IP address, but also encrypts the data thats being passed from ur system to the internet
+- It provides a dedicated secured tunnel between 2 points
+
+Proxy and Reverse Proxy:
+- Proxy : someone or something that has the authority to do something for the another person or a thing
+- A proxy is a server
+- Proxy server is a middleman btw private network and public internet
+- Forward Proxy:
+  <img width="402" height="191" alt="image" src="https://github.com/user-attachments/assets/86786fce-f3e3-4c6a-b485-530c1c2c18bd" />
+    - when multiple devices want to access the internet, it would pass through the server and and then would be sent to the cloud
+    - helps prevents harmful websites and hides IP address of the hosts
+    - Logs user activity
+    - can bypass restricted consent and increases speed
+- Reverse Proxy:
+    - regulates traffic coming into a network
+  <img width="424" height="206" alt="image" src="https://github.com/user-attachments/assets/c8f56856-beef-47ab-9889-a26c168586a3" />
+    - The private network will have its own servers. Now clients on the internet might want to communicate or get some data from these private servers. But at the same time, some malicious users too might be present and would corrupt the private servers. So for this we use a Reverse proxy that would filter the queries from a computer on the internet and then send it to the private network with servers and computers
+    - Benefits: Increases security, Hides IP address, blocks malicious traffic-> DDOS attack( an attack by a bunch of computer on the internet attacking a particular server on the internet)
+    - load balancing: evenly dist. traffic between multiple servers
 
 
+VPN:( Virtual Private Nwtwork)
+- establishes a secure and reliable network connection over an unsecure network connection as the internet
+- protects ur internt activity and disguises ur identity on the internet
+- When the ISP creates a connection in ur device, it could be sent to the government and the advertisements and whatever ur browsing is no longer private inorder to prevent this, we use VPN that would Bypass the ISP server and keeps ur browsing history private
+- Benifits:
+    - disguise ur identity by hiding ur IP address( they only see VPNs IP)
+    - encrypts and protects data: when the data passes through ur sytem to the internet, it is broken down into smaller packets and these packets are accessible by the ISPs, so VPNs prevents this by encapsulating the data with an extra layer of protection and sent it over the internet-> this is called tunneling and the data would pass through a virtual tunnel
+    - U can access internet content thats restricted in certain geographical networks-> for this u can use the VPN of that particular geographical location of which you want to gain access to and retrieve the data from restricted wbsites
+    - provides secure connection for remote workers-> done using a leased line.If there is an employee working remotely, they would have to access the files thats present in the office server-> this is done using a leased line(private line)-> directly connect the 2 host together using a secure channel and helps communication between them. But this can be expensive is the distance is too much and this must be renewed on monthly basis, so instead they can use a VPN
+- Who needs VPN: anyone who wants extra layer of protection( specially if ur using free wi-fi connections)-> VPNs can be there in ur Laptops, desktops, smartphone or the tablets
 
+
+IDS Vs IPS Vs Firewall:
+IDS : Intrusion detection system
+- passive monitering tech. for detecting cybersecurity attacks
+- If a problem is detected, it will alert the admin so that necessary actions would be taken
+- Types:
+    - based on deployment place:
+        - Network based: Network IDS : monitors traffic moving into and outside the network
+        - host based : Host IDS: monitors traffic of only that specific computer and also track the activity of clients on that particular system( eh: it might alert the admin if a video game is accessing private files
+    - threat identification:
+        - signature- based: it will identify the threat based on the signatures of the known number of threats and works similar to antivirus software
+        - Anomaly-based: It will create a record of normal activities of a system and if there is any activity outside this it will alert the admin ( THEY ARE BETTER THAN SIGNATIRE BASED AS THEY CAN IDENTIFY ANY NEW THREATS THAN THE NORMAL ONES)
+        - Hybrid-system: uses both methods to identify potential threats
+          
+IPS : Intrusion prevention system
+- Its an active monitoring system that protects the company's network from malicious attacks
+- They not only raise alter but also prevent the threats from happening by taking an action
+- when IPS detects a danger, it will place it a separate place
+- Types:
+    - Threat detection methods:
+        - Signature-based
+        - Anomaly based
+        - Bybrid
+    - based on deployment place:
+        - host-based
+        - network-based
+        - wireless-based
+        - network-behavious
+- IDS and IPS can be integrated together into a single unit too: NGFW and UTM
+
+
+## Difference Between Firewall, IDS, and IPS
+
+| Feature | Firewall | IDS (Intrusion Detection System) | IPS (Intrusion Prevention System) |
+|---|---|---|---|
+| Full Form | Firewall | Intrusion Detection System | Intrusion Prevention System |
+| Main Purpose | Controls network traffic based on security rules | Detects suspicious or malicious activity | Detects and blocks suspicious or malicious activity |
+| Primary Function | Filters incoming and outgoing traffic | Monitors traffic and identifies potential threats | Monitors traffic and actively prevents threats |
+| Action Taken | Allows or blocks traffic based on predefined rules | Generates alerts when suspicious activity is detected | Automatically blocks or drops malicious traffic |
+| Response | Preventive (based on configured rules) | Detective (identifies and reports threats) | Preventive (actively stops detected threats) |
+| Placement | Usually placed at the boundary between networks or on individual devices | Can monitor network traffic passively or analyze host activity | Usually placed inline in the network traffic path |
+| Traffic Handling | Filters traffic according to rules such as IP addresses, ports, and protocols | Observes or analyzes activity without directly blocking traffic | Inspects traffic and can block it before it reaches its destination |
+| Example | Blocks incoming connections to an unauthorized port | Detects repeated login attempts that may indicate a brute-force attack | Detects a known attack pattern and drops the malicious packets |
+| Limitation | May not detect every attack hidden within permitted traffic | Cannot directly stop an attack unless integrated with a blocking mechanism | May accidentally block legitimate traffic if incorrectly configured |
+
+### Easy Way to Remember
+
+- **Firewall:** Decides what traffic is allowed or denied.
+- **IDS:** Detects suspicious activity and alerts the administrator.
+- **IPS:** Detects suspicious activity and takes action to stop it.
+
+## Difference Between VPN and Proxy Server
+
+| Feature | VPN (Virtual Private Network) | Proxy Server |
+|---|---|---|
+| Main Purpose | Creates an encrypted connection between your device and a VPN server | Acts as an intermediary between your device and the destination server |
+| How It Works | Routes your network traffic through a VPN server and encrypts it through the VPN tunnel | Forwards requests to the destination server on your behalf |
+| Encryption | Usually encrypts traffic between your device and the VPN server | Does not necessarily encrypt traffic |
+| IP Address | Replaces your public IP address with the VPN server's IP address for routed traffic | The destination server generally sees the proxy's IP address instead of your IP |
+| Scope | Usually protects traffic from multiple applications on your device, depending on configuration | Often works only for a specific application, browser, or configured connection |
+| Security | Helps protect data in transit, especially on untrusted networks | Primarily forwards requests; security depends on the proxy type and configuration |
+| Privacy | Helps hide your traffic from your local network operator, but the VPN provider may see metadata or unencrypted traffic | Can hide your IP address from the destination, but the proxy provider may see your requests |
+| Speed | Encryption and routing may add overhead, depending on the VPN server and connection | May have less overhead, but speed depends on the proxy server and network |
+| Common Uses | Securing public Wi-Fi connections, remote access to company networks, and protecting traffic in transit | Accessing content through another server, caching web content, and filtering web requests |
+| Example | An employee connects securely to their company's internal network from home | A browser sends a website request through a proxy server |
+| Limitation | Does not guarantee complete anonymity or protect against every type of threat | May not encrypt traffic or protect applications that are not configured to use it |
+
+### Easy Way to Remember
+
+- **VPN:** Creates an encrypted tunnel for network traffic.
+- **Proxy:** Acts as an intermediary between the client and the destination server.
+
+### Example
+
+Suppose you are using public Wi-Fi at a coffee shop:
+
+- **Without a VPN:** Your traffic may be exposed to local network monitoring if it is not otherwise encrypted.
+- **With a VPN:** Your traffic is encrypted between your device and the VPN server, helping protect it from local network monitoring.
+- **With a proxy:** Your requests pass through the proxy server, which can hide your IP address from the destination, but the connection is not necessarily encrypted.
+
+
+DMZ ( Demilitarized zone):
+- basically means an are where firewall protection is forbidden and there is a way that we can configure devices into DMZ
+- used to improve the security of an org's network by segregating the devices, such as computers and servers on the opposite sides of a firewall
+<img width="375" height="204" alt="image" src="https://github.com/user-attachments/assets/ff19f745-746a-4393-b829-328f659c2487" />
+- There would be servers that r present behind the Company's firewall and inside the private network
+- and these servers might be given access to the clients on the internet
+- This will allow the unauthorized clients( anyone on the internet) to access the servers of a company present inside the company's private network
+- If this happens, there is a chance that malicious users can access the server and could cause havoc they have already got past the firewall bcz the company allows it.
+- This would also allow the attackers to access the other devices and DB present inside the same network and inject viruses( this is a security network)
+- So instead we could place the servers infront of the firewall so that the other users dont have access inside the company's data behind the firewall and only the servers would be exposed on the internet-> these servers are no in a DMZ
+  <img width="370" height="116" alt="image" src="https://github.com/user-attachments/assets/05e856a9-7d98-4a7f-88ff-b9eaea96074a" />
+- this could also act as a screened network to detect any malicious activity before it can get into the other side of the firewall
+- DMZ divides a network into 2 parts by taking the devices from inside the firewall and placing them outside the firewall
+- for extra protection, a firewall could be added infront of the servers, so that when hackers try to break a firewall, they would have to break into another firewall too, inorder to get into the company's data
+- There's also a DMZ that u can configure in ur home
+- a home router DMZ setup designates a device as a DMZ host and will forward all the ports to that device
+- Like adding a gaming console and configuring it as  a DMZ host, bcz most of these games are played online and gamers dont want any kind of interference while gaming from a firewall
+- for this, u could just go into the DMZ configuration page of the router and give the IP of the gaming console as the DMZ
+- NOTE: the device in the DMZ must be configured with a static IP and not dynamic IP
+<img width="364" height="142" alt="image" src="https://github.com/user-attachments/assets/d323ff24-c825-4560-b21f-39ad815b7e1a" />
+- here, the home router will act as a firewall, so as the computers are on the other side of the router(which is a firewall) it is safe, but the gaming console is given as a DMZ and is directly exposed to the internet
