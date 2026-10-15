@@ -250,3 +250,24 @@ DoS( denial of service) and DDoS (distributed denial of service) attacks:
   - Network segmentation: dividing the network into multiple segments, this will help prevent DoS and DDoS attacks from accessing critical resources
   - Emergency response plans: They help during the DDoS or DoS attacks
   - SYN Cookies: cryptographic technique used to mitigate TCP SYN Flood attack by eliminating the need to allocate the resources to incomplete connections, so here instead of generating a connection queue, it generates a SYN Cookie, which contain enough info to verify the client's request
+
+
+Sniffing:
+- Hacking( intercepting and capturing) all the data packets sent over a network- act of monitoring data packets
+- Its a one of the DoS attack and hackers use software and hardware tools to sniff network traffic for sensitive info
+- Types:
+    - Passive Sniffing:
+        - the attacker just watches the data packets passing through the network and dont do anything
+        - This is done when the hacker just want to collect info like what kind of data is sent over the network or the info abt the target etc
+    - Active Sniffing:
+        - Here the attacker can actively look into whats happening and simultaneously perform DNS poisoning, MAC spoofing and MAC flooding attacks also
+- Common sniffing tools:
+    - wireshark
+    - metacap : u can perform many types of MITM attacker
+    - tcpdump : well known packet analyzer
+- Detecting snififng attacks:
+    - involves monitoring network traffic for anomalies
+    - using IDS can help spot suspecious activities
+    - regular audits and security checks are key in spotting sniffing attempts
+ 
+       
