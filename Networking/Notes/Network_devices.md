@@ -104,7 +104,7 @@ NOTE:
 
 
 
-Everything a host does to speak on the internet:
+**Everything a host does to speak on the internet:**
 
 2 scenerios:
 
@@ -156,7 +156,7 @@ The first step of sending the data is always the same
 - If foreign : ARP for default Gateway IP
 
 
-Everything Switches do to facilitate communication
+**Everything Switches do to facilitate communication**
 
 -switching: process of moving data within networks
 -Switches are devices whose primary purpose is switching
@@ -211,7 +211,7 @@ NOTE:
 
 
 
-Everything Routers do to facilitate communication
+**Everything Routers do to facilitate communication**
 
 -Routers have an IP address and a MAC address
 --> difference between hosts and routers
