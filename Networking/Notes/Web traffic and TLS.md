@@ -153,20 +153,39 @@ Step 2: Certificate check
 - As a response, the server will send " Server hello" to the client
 - The server will send a certificate to the client, and it includes many things
   i.public key ( Asymmetric encryption)
-- Server hello done- at this time the client ahs the server certificate and also the client and server have agreed on the TLS version and cyber suite
+  11. It also contains the server's identity and a CA's digital signature, among other information.
+- Server hello done- at this time the client ahs the server certificate and also the client and server have agreed on the TLS version and cipher suite
   
 Step 3:Key exchange
 - this is where the client and server will come up with a share encryption key used to encrypt the data and this is where asymmetric encryption comes into picture
-- with this the data encrypted by the client b the public key from the server can only be decrypted by the public key of the server and thats how the client send an encryption key to the server over the wide open internet
+- with this the data encrypted by the client using the public key from the server, can only be decrypted by the private key of the server and thats how the client send an encryption key to the server over the wide open internet
 - This is how client Key exchange is done, here RSA is taken as an example
 - At the end of this step, the encrypted session key by the client using the public key is sent to the server where its decrypted by the server with the public key to finally have the resultant session key
 
 Step 4:Data transmission
 - by the end of step 3, both the sides hold the session key
-- Here they use the session key and cyber suite to send the encrypted data back and forth in a secure birectional channel
+- Here they use the session key and cipher suite to send the encrypted data back and forth in a secure birectional channel
 
 
 -Y dont we just use assymetric encryption for everything? y use only symmetric?
 - This is bcz assymetric is computationally expensive and not really suitable for data transmillion
 - TLS 1.3 is an optimization
 - Diffie–Hellman is used in TLS 1.3 and RSA is discarded there
+
+
+Asymmetric cryptography — public and private keys
+
+Used for authentication and, in some older TLS handshakes, establishing a shared secret.
+- The server has a public key and a corresponding private key.
+- The certificate binds the public key to the server's identity.
+- The private key must remain secret.
+
+
+Symmetric encryption — a shared secret key
+
+Used to encrypt and authenticate the actual application data sent between the client and server.
+- Both sides derive matching traffic keys.
+- The same traffic key is used to encrypt and decrypt in its respective direction.
+- It's much faster than public-key cryptography for bulk data.
+
+NOTE: in a modern TLS 1.2 connection, ECDHE is commonly used instead of RSA key transport. The RSA certificate may still authenticate the server, but RSA is then used for digital signatures rather than encrypting a secret.
