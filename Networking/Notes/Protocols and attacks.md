@@ -147,17 +147,23 @@ All three can use TLS to protect data in transit. TLS alone does not necessarily
 Which protocols are insecure?
 - The important distinction is that a protocol can be insecure by default, or it can be secure only when configured correctly.
 - NOTE :FTPS is another secure file-transfer option. It is FTP protected by TLS, whereas SFTP operates over SSH.
-  | Protocol | Main Security Concern | Safer Approach |
+## Which Protocols Are Insecure?
+
+- A protocol can be insecure by design, or it can be secure only when configured correctly.
+- **Note:** FTPS is another secure file-transfer option. It is FTP protected by TLS, whereas SFTP operates over SSH.
+
+| Protocol | Main Security Concern | Safer Approach |
 |---|---|---|
 | FTP | Plaintext credentials and data | SFTP or FTPS |
 | Telnet | Plaintext credentials and session data | SSH |
 | SMTP without TLS | Email data and credentials may be intercepted | SMTP with properly configured TLS |
 | IMAP without TLS | Mailbox data and credentials may be intercepted | IMAPS or IMAP with STARTTLS |
 | POP3 without TLS | Downloaded messages and credentials may be intercepted | POP3S or POP3 with STARTTLS |
-| ICMP | Can be abused for reconnaissance or attacks; no built-in encryption | Apply appropriate network filtering and monitoring |
-| SMB | Vulnerable configurations, outdated versions, and excessive permissions | Modern SMB, patches, restricted access, and appropriate signing/encryption |
+| ICMP | Can be abused for reconnaissance or attacks; no built-in encryption | Appropriate network filtering and monitoring |
+| SMB | Risks from outdated versions, vulnerable configurations, and excessive permissions | Modern SMB, patches, restricted access, and appropriate signing/encryption |
 | RDP | Exposed remote login service and credential attacks | NLA, MFA, restricted access, and a VPN or secure gateway |
 | SSH / SFTP | Risks from weak credentials, compromised keys, or misconfiguration | Strong authentication, key protection, updates, and access controls |
+
 
 Quick memory trick
 - ICMP → Diagnostics and error messages
