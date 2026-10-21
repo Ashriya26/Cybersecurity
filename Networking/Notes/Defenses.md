@@ -46,3 +46,43 @@ Network segmentation:
 - users shouldnt talk directly to the DB servers, and the only applications in the core are SQL and SSH
 - Mandated segmentation ( PCI Compliance) makes change control much easier
 - ACLs and Access allow list/deny list
+
+
+ACL( Access COntrol List)
+- its a set of rules used to control network traffic and reduce network attacks
+- Filters the incoming and outgoing traffic based on certain rules
+- Its in layer 3
+- also called packet filtering firewalls
+- ACL is a set of rules, so whenever the traffic travels through the router, it will check each of these packets against those set of rules if it should be allow or deny it
+- U can either block 1 specific IP, host or u can also block an entire network too
+- File system ACL:
+    - Filters access to Files and directories
+    - It tells the OS which user is allowed to access the system and what r the privileges offerred
+- Networking ACL:
+    - Filters access to the entire network
+    - It tell which kind of traffic can access the network
+    - what each device or user can do once its inside
+    - they can further be categorized based on traffic identification
+- Standard ACL:
+    - developed only using the source IP to protect the network
+    - they allow/block the entire protocol suite
+    - they dont differentiate between any IP traffic( for eg, if u block the source IP of TCP/IP suite, then none of those traffic would pass through the router) 
+    - It would allow all the traffic to pass, including the malicious ones
+    - Its the most basic type and can  be used for simple deployments
+    - But it dosnt provide strong security
+- Extended ACL:
+    - filters traffic based on protocol info
+    - widely used as it can different btw diff, protocols like TCP, UDP, ICMP etc
+    - it uses source and dest IP address and port numbers
+    - uses numbers from 100-199,2000-2699
+    - using ACL, u can block the source/dest. for a single host/ the entire network 
+
+- help organize traffic
+- improve network efficiency
+- give admin high level control over users and computer systems
+- keeps out malicious traffic
+
+Load balancer:
+- its a piece of h/w or s/w thats used to evenly distribute the data activity across the network
+- so that so single server/computer becomes overwhelmed bcz of the amt of traffic
+- Imagine theres a small company and it adds its website directly to teh server. Now when the user accesses it, it will access directly from the server. This is ok until its min no.of users, but when the number of users increases, there would be a load on the server. Adding more servers would help, but theres a possibility that the user would still use the same server to retrieve the website info, so for this reason, load balancers play an imp. role, where it evenly distributes the traffic coming from the users across all the servers evenly.
